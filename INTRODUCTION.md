@@ -1,42 +1,40 @@
 ---
-title: Dev container ワークショップ イントロダクション
+title: シリーズ: コンテナで構築する開発環境
 author: mikoto2000
-date: 2026/1/7
+date: 2026/1/8
 ---
-
-
-# Session Title
-
-Dev container ワークショップ - 環境差異に悩まないモダン開発環境の作り方（VS Code + Dev Containers）
 
 
 # Description
 
 プロジェクトの開発環境構築をする／させる際に、手順ミスやアドリブで環境差異が発生してしまい、てこずった経験はありませんか？
 Dev container を使うことで、開発環境をコード化し、誰でも同じ環境を一瞬で立ち上げることが可能になります。
-本セッションでは、VS Code と Dev container を使ったモダンな開発環境構築方法を、実際のコードと動作を見せながら解説します。
+本シリーズでは、Docker を使った開発環境構築の基礎から、Dev container を用いた再現性の高い開発環境の設計・共有までを、段階的に学びます。
 プロジェクトの開発環境構築に苦労している方、Dev container に興味がある方はぜひご参加ください。
-セッション終了時には、Spring Boot + PostgreSQL のサンプルプロジェクトを Dev container 化し、チームで再利用できるテンプレートとして持ち帰れる状態を目指します。
+シリーズ終了時には、Spring Boot + PostgreSQL のサンプルプロジェクトを Dev container 化し、チームで再利用できるテンプレートとして持ち帰れる状態を目指します。
 
 
-# Presentation outline
+# Outline
+
+Dev container を使った開発環境構築方法について、その前提の Docker, Docker Compose の触りから、VS Code での Dev container 利用方法を、全 3 回のワークショップで解説します。
+
 
 ## 話すこと
 
-Dev container を使った開発環境構築方法について、その前提の Docker, Docker Compose の触りから、VS Code での Dev container 利用方法を解説します。
-
-- 環境構築
-  - Docker on WSL2
-- Docker コンテナを使ってみる
-- Docker Compose を使ってみる
-- Dev container の概要
-- Dev container の設定方法
-- Dev container の利用方法
+- 開発環境構築
+  - Docker on WSL2 のセットアップ
+- Docker 入門
+  - Docker コンテナを使ってみる
+  - Docker Compose を使ってみる
+- Dev container 入門
+  - Dev container の概要
+  - Dev container の設定方法
+  - Dev container の利用方法
 
 
 ## 話さないこと
 
-- コンテナとは何か？
+- コンテナ技術の理論的な説明
 - Docker / Docker Compose の高度な使い方
 - VS Code の一般的な操作方法
 
@@ -46,7 +44,7 @@ Dev container を使った開発環境構築方法について、その前提の
 - (プロジェクトメンバの)開発環境構築に苦労している人
 - プロジェクトの技術的取りまとめをしている人
 - Dev container に興味がある人
-- ターミナル操作に抵抗が無い人（簡単なコマンド操作ができればOK）
+- ターミナル操作に抵抗が無い人（基本的なコマンド操作ができればOK）
 
 
 ## このテーマを取り上げる理由
@@ -57,13 +55,23 @@ Dev container を使った開発環境構築方法について、その前提の
 
 ## 講演の概要
 
-1. 環境構築
-   - Docker on WSL2
-2. Docker コンテナを使ってみる
-3. Docker Compose を使ってみる
-4. Dev container の概要
-5. Dev container の設定方法
-6. Dev container の利用方法
+- Vol.1 開発環境構築
+  - Docker on WSL2
+  - Hello World コンテナを動かしてみる
+- Vol.2 Docker 入門
+  - Docker コンテナ概要
+  - Docker コンテナを使ってみる
+    - Web サーバコンテナを動かしてみる
+      - ポートフォワーディング
+      - ボリュームマウント
+  - Docker Compose を使ってみる
+    - 複数サービスの定義
+    - ポートフォワーディング
+    - ボリュームマウント
+- Vol.3 Dev container 入門
+  - Dev container の概要
+  - Dev container の設定方法
+  - Dev container の利用方法
 
 
 # 自身について
