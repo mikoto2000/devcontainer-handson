@@ -7,7 +7,7 @@ date: 2026/1/7
 
 # Session Title
 
-Dev container ワークショップ モダン開発環境構築入門 ～VS Code + Dev container 編～
+Dev container ワークショップ - 環境差異に悩まないモダン開発環境の作り方（VS Code + Dev Containers）
 
 
 # Description
