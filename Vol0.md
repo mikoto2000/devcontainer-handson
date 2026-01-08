@@ -103,11 +103,11 @@ BIOS のどこかに `Save & Exit` という名前のメニューがあるはず
 Ubuntu 24.04 を起動するには、スタートメニューから Ubuntu 24.04 を選択して起動します。
 
 
-## Docker のインストール手順
+# Docker のインストール
 
 Ubuntu 24.04 の起動後、[Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/) の手順に従って、Docker をインストールします。
 
-### apt リポジトリの登録
+## apt リポジトリの登録
 
 Docker インストールに必要な apt リポジトリを Ubuntu に登録します。
 
@@ -131,7 +131,7 @@ EOF
 sudo apt update
 ```
 
-### Docker エンジンのインストール
+## Docker エンジンのインストール
 
 Docker エンジンをインストールします。
 
@@ -150,7 +150,7 @@ sudo gpasswd -a <ユーザー名> docker
 変更を反映するため、Ubuntu を再起動するか、ログアウトして再度ログインしてください。
 
 
-### Docker の動作確認
+## Docker の動作確認
 
 Docker が正しくインストールされたか確認するため、 Hello World コンテナを実行してみます。
 
