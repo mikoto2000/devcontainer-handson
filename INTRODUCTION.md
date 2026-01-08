@@ -16,12 +16,12 @@ Dev container を使うことで、開発環境をコード化し、誰でも同
 
 # Outline
 
-Dev container を使った開発環境構築方法について、その前提の Docker, Docker Compose の触りから、VS Code での Dev container 利用方法を、全 3 回のワークショップで解説します。
+Dev container を使った開発環境構築方法について、その前提の Docker, Docker Compose の触りから、VS Code での Dev container 利用方法を、全 2 回のワークショップで解説します。
 
 
 ## 話すこと
 
-- 開発環境構築
+- 開発環境構築(事前準備資料として配布)
   - Docker on WSL2 のセットアップ
 - Docker 入門
   - Docker コンテナを使ってみる
@@ -55,10 +55,10 @@ Dev container を使った開発環境構築方法について、その前提の
 
 ## 講演の概要
 
-- Vol.1 開発環境構築
+- Vol.0 開発環境構築(事前準備資料として配布)
   - Docker on WSL2
   - Hello World コンテナを動かしてみる
-- Vol.2 Docker 入門
+- Vol.1 Docker 入門
   - Docker コンテナ概要
   - Docker コンテナを使ってみる
     - Web サーバコンテナを動かしてみる
@@ -68,7 +68,7 @@ Dev container を使った開発環境構築方法について、その前提の
     - 複数サービスの定義
     - ポートフォワーディング
     - ボリュームマウント
-- Vol.3 Dev container 入門
+- Vol.2 Dev container 入門
   - Dev container の概要
   - Dev container の設定方法
   - Dev container の利用方法
