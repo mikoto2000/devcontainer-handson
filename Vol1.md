@@ -17,23 +17,25 @@ date: 2026/1/9
 ## Docker コンテナとは
 
 「Docker コンテナ = 使い捨てのアプリケーション実行環境」と考えてください。
-
 Docker イメージと言われるテンプレートからコンテナを起動し、その中でアプリケーションを実行します。
 
 
 ## Docker イメージとは
 
 「Docker イメージ = コンテナの設計図」と考えてください。
-
 プログラムでいうところのクラスのようなもので、イメージからコンテナを起動（インスタンス化）します。
 
 
-![](./images/docker-image-and-container.png)
+TODO: 図 ![](./images/docker-image-and-container.png)
 
 
 # Docker コンテナを使ってみる
 
+本シリーズの最終目標は Dev container を使った開発環境構築ですが、その前提として Docker コンテナの基本的な使い方を学びます。
+
 ## Web サーバコンテナを動かしてみる
+
+Apache HTTP Server コンテナを使って、Web サーバコンテナを動かしてみましょう。
 
 ### Apache HTTP Server コンテナの起動
 
@@ -52,14 +54,12 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 ```
 
 ただし、コンテナ環境は隔離された状態なので、ホスト OS からはアクセスできません。
-
 いったん Ctrl + C でコンテナを停止しましょう。
 
 
 ### ポートフォワーディングでアクセスできるようにする
 
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
-
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
 
 ```sh
@@ -69,9 +69,7 @@ docker run -p 8080:80 httpd:latest
 - `-p 8080:80`: ホスト OS のポート 8080 をコンテナ内のポート 80 に転送する設定
 
 このように、ポートフォワーディング設定をすることで、ホストのポート 8080 から コンテナのポート 80(Apache HTTP Server) にアクセスできるようになります。
-
 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
-
 `It works!` と表示されたら成功です。
 
 
@@ -79,8 +77,8 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 
 ポートフォワーディング設定でコンテナにアクセスできるようになりましたが、
 このままではコンテナに手元の資材を持ち込むことができません。
-
-それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、手元の資材をコンテナに持ち込めるようにしましょう。
+それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、
+手元の資材をコンテナに持ち込めるようにしましょう。
 
 ```sh
 docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
@@ -90,13 +88,10 @@ docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 - `-v "$(pwd)"/usr/local/apache2/htdocs"`: カレントディレクトリをコンテナ内の `/usr/local/apache2/htdocs` ディレクトリにマウントする設定
 
 コンテナを起動したら、再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
-
 `It works!` の代わりに、カレントディレクトリのファイル一覧が表示されます。
-
 これでカレントディレクトリをコンテナ上の Apache HTTP Server が参照していることが確認できました。
 
-せっかくだからファイルを作成し、 Apache HTTP Server から参照できることを確認してみましょう。
-
+せっかくなのでファイルを作成し、 Apache HTTP Server から参照できることを確認してみましょう。
 カレントディレクトリに `index.html` ファイルを作成し、以下の内容を記述します。
 
 ```html
@@ -104,7 +99,6 @@ It's my created file!
 ```
 
 ファイルが作成出来たら、再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
-
 `It's my created file!` と表示されます。
 
 
@@ -118,4 +112,8 @@ It's my created file!
 - TODO:複数サービスの定義
 - TODO:ポートフォワーディング
 - TODO:ボリュームマウント
+
+# 参考資料
+
+- [httpd - Official Image | Docker Hub](https://hub.docker.com/_/httpd)
 
