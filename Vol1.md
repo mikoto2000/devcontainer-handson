@@ -60,6 +60,8 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
 
+TODO: 図 ポートフォワーディングイメージ ![](./images/docker-image-and-container.png)
+
 ```sh
 docker run -p 8080:80 httpd:latest
 ```
@@ -78,12 +80,14 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、
 手元の資材をコンテナに持ち込めるようにしましょう。
 
+TODO: 図 ボリュームマウントイメージ ![](./images/docker-image-and-container.png)
+
 ```sh
 docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 ```
 
 - `$(pwd)`: カレントディレクトリの絶対パスに展開される
-- `-v "$(pwd)"/usr/local/apache2/htdocs"`: カレントディレクトリをコンテナ内の `/usr/local/apache2/htdocs` ディレクトリにマウントする設定
+- `-v "$(pwd)/usr/local/apache2/htdocs"`: カレントディレクトリをコンテナ内の `/usr/local/apache2/htdocs` ディレクトリにマウントする設定
 
 コンテナを起動したら、再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
 `It works!` の代わりに、カレントディレクトリのファイル一覧が表示されます。
