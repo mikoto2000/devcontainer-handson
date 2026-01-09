@@ -33,11 +33,9 @@ TODO: 図 ![](./images/docker-image-and-container.png)
 
 本シリーズの最終目標は Dev container を使った開発環境構築ですが、その前提として Docker コンテナの基本的な使い方を学びます。
 
-## Web サーバコンテナを動かしてみる
+今回は Apache HTTP Server コンテナを使って、Web サーバコンテナを動かしてみましょう。
 
-Apache HTTP Server コンテナを使って、Web サーバコンテナを動かしてみましょう。
-
-### Apache HTTP Server コンテナの起動
+## Apache HTTP Server コンテナの起動
 
 ```sh
 docker run httpd:latest
@@ -57,7 +55,7 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 いったん Ctrl + C でコンテナを停止しましょう。
 
 
-### ポートフォワーディングでアクセスできるようにする
+## ポートフォワーディングでアクセスできるようにする
 
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
@@ -73,7 +71,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 `It works!` と表示されたら成功です。
 
 
-### ボリュームマウントでコンテンツを変更できるようにする
+## ボリュームマウントでコンテンツを変更できるようにする
 
 ポートフォワーディング設定でコンテナにアクセスできるようになりましたが、
 このままではコンテナに手元の資材を持ち込むことができません。
