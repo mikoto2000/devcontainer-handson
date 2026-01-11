@@ -87,7 +87,7 @@ docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 ```
 
 - `$(pwd)`: カレントディレクトリの絶対パスに展開される
-- `-v "$(pwd)/usr/local/apache2/htdocs"`: カレントディレクトリをコンテナ内の `/usr/local/apache2/htdocs` ディレクトリにマウントする設定
+- `-v "$(pwd):/usr/local/apache2/htdocs"`: カレントディレクトリをコンテナ内の `/usr/local/apache2/htdocs` ディレクトリにマウントする設定
 
 コンテナを起動したら、再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
 `It works!` の代わりに、カレントディレクトリのファイル一覧が表示されます。
@@ -104,7 +104,76 @@ It's my created file!
 `It's my created file!` と表示されます。
 
 
-- TODO:Dockerfile
+## カスタム Docker イメージの作成
+
+Docker イメージの基本的な使い方は理解できたと思います。
+次に、カスタム Docker イメージを作成してみましょう。
+
+### Dockerfile の作成
+
+`httpd` イメージと同じように、 Apache HTTP Server を動作させるカスタム Docker イメージを作成します。
+まず、カレントディレクトリに `Dockerfile` という名前のファイルを作成し、以下の内容を記述します。
+
+```Dockerfile
+# ベースイメージを指定
+# ベースイメージは、 Docker Hub で公開されている ubuntu イメージを使用
+FROM ubuntu:24.04
+
+# Apache HTTP Server をインストール
+RUN apt update \
+ && apt install -y apache2
+
+# apache HTTP Server の起動に必要なディレクトリを作成
+RUN mkdir -p /var/run/apache2 /var/lock/apache2
+
+# ポート 80 を公開
+EXPOSE 80
+
+# Apache HTTP Server をフォアグラウンドで起動
+# Ubuntu のサービスとして起動するわけではないため、
+# 起動時に一工夫している
+CMD ["sh", "-c", ". /etc/apache2/envvars && exec apache2 -DFOREGROUND"]
+```
+
+
+### Docker イメージのビルド
+
+次に、カスタム Docker イメージをビルドします。
+カレントディレクトリで、以下のコマンドを実行します。
+
+```sh
+docker build -t my-httpd:latest .
+```
+
+- `-t my-httpd:latest`: ビルドするイメージに `my-httpd:latest` という名前を付ける
+- `.`: カレントディレクトリにある `Dockerfile` を使用
+
+次に、 docker images コマンドで、ビルドしたイメージが作成されていることを確認します。
+次のように `my-httpd:latest` イメージが表示されれば成功です。
+
+```sh
+# docker images
+IMAGE                                                                                                                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+my-httpd:latest                                                                                                            bb045a3f673c        242MB             0B        
+```
+
+
+### カスタム Docker イメージの起動
+
+最後に、ビルドしたカスタム Docker イメージを起動します。
+以下のコマンドを実行します。
+
+```sh
+docker run -p 8080:80 -v "$(pwd):/var/www/html" my-httpd:latest
+```
+
+- `-v "$(pwd):/var/www/html"`: カレントディレクトリをコンテナ内の `/var/www/html` ディレクトリにマウントする設定
+  (`/var/www/html` は Ubuntu ベースの Apache HTTP Server のデフォルトのドキュメントルート)
+
+再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
+`It's my created file!` と表示されれば成功です。
+
+これで、カスタム Docker イメージの作成と起動ができました。
 
 
 # Docker Compose を使ってみる
@@ -118,4 +187,4 @@ It's my created file!
 # 参考資料
 
 - [httpd - Official Image | Docker Hub](https://hub.docker.com/_/httpd)
-
+- [ubuntu - Official Image | Docker Hub](https://hub.docker.com/_/ubuntu)
