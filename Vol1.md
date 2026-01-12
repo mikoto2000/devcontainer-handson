@@ -214,7 +214,7 @@ services:
       - ./:/usr/local/apache2/htdocs
 ```
 
-### Docker Compose の起動
+## Docker Compose の起動
 
 次に、 Docker Compose を起動します。
 カレントディレクトリで、以下のコマンドを実行します。
@@ -223,9 +223,9 @@ services:
 docker compose up -d
 ```
 
-### サービスの動作確認
+## サービスの動作確認
 
-#### web サービスの動作確認
+### web サービスの動作確認
 
 web サービスが動いているかを確認します。
 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
@@ -233,7 +233,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 `It's my created file!` と表示されれば成功です。
 
 
-#### app サービスの動作確認
+### app サービスの動作確認
 
 app サービスが動いているかを確認します。
 app サービスに接続し、 curl コマンドで web サービスにアクセスしてみましょう。
@@ -260,7 +260,7 @@ TODO: 図 ![](./images/docker-image-and-container.png)
 app サービスと web サービスのふたつのサービスを定義し、動作確認まで行いました。
 今回は app サービスに curl コマンドをインストールしましたが、実際の開発環境では Java や Node.js などの開発ツールをインストールします。
 
-#### Docker Compose の停止
+### Docker Compose の停止
 
 サービスの動作確認ができたら、 Docker Compose を停止します。
 カレントディレクトリで、以下のコマンドを実行します。
