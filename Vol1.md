@@ -254,6 +254,9 @@ curl http://web:80
 
 `http://web` の `web` は、compose.yaml で定義したサービス名です。Docker Compose では、サービス名がそのままホスト名として名前解決されます。
 
+
+TODO: 図 ![](./images/docker-image-and-container.png)
+
 app サービスと web サービスのふたつのサービスを定義し、動作確認まで行いました。
 今回は app サービスに curl コマンドをインストールしましたが、実際の開発環境では Java や Node.js などの開発ツールをインストールします。
 
