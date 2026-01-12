@@ -178,13 +178,104 @@ docker run -p 8080:80 -v "$(pwd):/var/www/html" my-httpd:latest
 
 # Docker Compose を使ってみる
 
+Docker Compose は、複数の Docker コンテナをまとめて管理するためのツールです。
+ひとつひとつのコンテナを、「サービス」として定義し、複数のサービスをまとめて「アプリケーション」として定義します。
+
+本ワークショップでは、 Dev container を使った開発環境構築を見越して、「開発環境」と「RDBMS 環境」のふたつのサービスを定義してみましょう。
+
+
 ## 複数サービスの定義
 
-- TODO:複数サービスの定義
-- TODO:ポートフォワーディング
-- TODO:ボリュームマウント
+前述の通り、「開発環境」と「RDBMS 環境」のふたつのサービスを定義します。
+サービスの内容としては、以下の通りです。
+
+- 開発環境: curl クライアントをインストールしたコンテナ
+- RDBMS 環境: Apache HTTP Server コンテナ
+
+### compose.yaml の作成
+
+それでは、サービス定義をしていきましょう。
+カレントディレクトリに `compose.yaml` という名前のファイルを作成し、以下の内容を記述します。
+
+```yaml
+services:
+  # curl がインストールされた開発環境コンテナ
+  app:
+    image: curlimages/curl:8.18.0
+    command: sleep infinity
+
+  web:
+    image: httpd:2.4
+    # ポートフォワーディング設定
+    ports:
+      - "8080:80"
+    # ボリュームマウント設定
+    volumes:
+      - ./:/usr/local/apache2/htdocs
+```
+
+### Docker Compose の起動
+
+次に、 Docker Compose を起動します。
+カレントディレクトリで、以下のコマンドを実行します。
+
+```sh
+docker compose up -d
+```
+
+### サービスの動作確認
+
+#### web サービスの動作確認
+
+web サービスが動いているかを確認します。
+Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
+
+`It's my created file!` と表示されれば成功です。
+
+
+#### app サービスの動作確認
+
+app サービスが動いているかを確認します。
+app サービスに接続し、 curl コマンドで web サービスにアクセスしてみましょう。
+
+次のコマンドで、 app サービスに接続します。
+
+```sh
+docker compose exec app sh
+```
+
+接続ができたら、次のコマンドで web サービスにアクセスします。
+
+```sh
+curl http://web:80
+```
+
+`It's my created file!` と表示されれば成功です。
+
+`http://web` の `web` は、compose.yaml で定義したサービス名です。Docker Compose では、サービス名がそのままホスト名として名前解決されます。
+
+app サービスと web サービスのふたつのサービスを定義し、動作確認まで行いました。
+今回は app サービスに curl コマンドをインストールしましたが、実際の開発環境では Java や Node.js などの開発ツールをインストールします。
+
+#### Docker Compose の停止
+
+サービスの動作確認ができたら、 Docker Compose を停止します。
+カレントディレクトリで、以下のコマンドを実行します。
+
+```sh
+docker compose down
+```
+
+# まとめ
+
+今回は、 Docker コンテナの基本的な使い方と Docker Compose の基本的な使い方を学びました。
+次回は、この知識を活かして、 Dev container を使った開発環境構築を学びます。
+
 
 # 参考資料
 
 - [httpd - Official Image | Docker Hub](https://hub.docker.com/_/httpd)
 - [ubuntu - Official Image | Docker Hub](https://hub.docker.com/_/ubuntu)
+- [docker | Docker Docs](https://docs.docker.com/reference/cli/docker/)
+- [docker compose | Docker Docs](https://docs.docker.com/reference/cli/docker/compose/)
+
