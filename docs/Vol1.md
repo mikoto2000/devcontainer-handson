@@ -26,7 +26,7 @@ Docker イメージと言われるテンプレートからコンテナを起動�
 プログラムでいうところのクラスのようなもので、イメージからコンテナを起動（インスタンス化）します。
 
 
-TODO: 図 ![](./images/docker-image-and-container.png)
+<!-- TODO: 図 ![](./images/docker-image-and-container.png) -->
 
 
 # Docker コンテナを使ってみる
@@ -60,7 +60,7 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
 
-TODO: 図 ポートフォワーディングイメージ ![](./images/docker-image-and-container.png)
+<!-- TODO: 図 ポートフォワーディングイメージ ![](./images/docker-image-and-container.png) -->
 
 ```sh
 docker run -p 8080:80 httpd:latest
@@ -80,7 +80,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、
 手元の資材をコンテナに持ち込めるようにしましょう。
 
-TODO: 図 ボリュームマウントイメージ ![](./images/docker-image-and-container.png)
+<!-- TODO: 図 ボリュームマウントイメージ ![](./images/docker-image-and-container.png) -->
 
 ```sh
 docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
@@ -255,7 +255,7 @@ curl http://web:80
 `http://web` の `web` は、compose.yaml で定義したサービス名です。Docker Compose では、サービス名がそのままホスト名として名前解決されます。
 
 
-TODO: 図 ![](./images/docker-image-and-container.png)
+<!-- TODO: 図 ![](./images/docker-image-and-container.png) -->
 
 app サービスと web サービスのふたつのサービスを定義し、動作確認まで行いました。
 今回は app サービスに curl コマンドをインストールしましたが、実際の開発環境では Java や Node.js などの開発ツールをインストールします。
