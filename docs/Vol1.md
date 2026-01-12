@@ -1,26 +1,28 @@
 ---
-title: "シリーズ: コンテナで構築する開発環境 - Vol.1 Docker 入門"
+title: "シリーズ: コンテナで構築する開発環境 - Vol.1 Docker/Docker Compose 入門"
 author: mikoto2000
 date: 2026/1/9
 ---
 
-# 前提条件
+# シリーズ: コンテナで構築する開発環境 - Vol.1 Docker/Docker Compose 入門
+
+## 前提条件
 
 - Vol.0 開発環境構築 を完了していること
 
 
-# Docker コンテナ概要
+## Docker コンテナ概要
 
 この章では、開発環境として Docker コンテナを利用する際に知っておくべき基本的な概念を説明します。
 
 
-## Docker コンテナとは
+### Docker コンテナとは
 
 「Docker コンテナ = 使い捨てのアプリケーション実行環境」と考えてください。
 Docker イメージと言われるテンプレートからコンテナを起動し、その中でアプリケーションを実行します。
 
 
-## Docker イメージとは
+### Docker イメージとは
 
 「Docker イメージ = コンテナの設計図」と考えてください。
 プログラムでいうところのクラスのようなもので、イメージからコンテナを起動（インスタンス化）します。
@@ -29,13 +31,13 @@ Docker イメージと言われるテンプレートからコンテナを起動�
 <!-- TODO: 図 ![](./images/docker-image-and-container.png) -->
 
 
-# Docker コンテナを使ってみる
+## Docker コンテナを使ってみる
 
 本シリーズの最終目標は Dev container を使った開発環境構築ですが、その前提として Docker コンテナの基本的な使い方を学びます。
 
 今回は Apache HTTP Server コンテナを使って、Web サーバコンテナを動かしてみましょう。
 
-## Apache HTTP Server コンテナの起動
+### Apache HTTP Server コンテナの起動
 
 ```sh
 docker run httpd:latest
@@ -55,7 +57,7 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 いったん Ctrl + C でコンテナを停止しましょう。
 
 
-## ポートフォワーディングでアクセスできるようにする
+### ポートフォワーディングでアクセスできるようにする
 
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
@@ -73,7 +75,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 `It works!` と表示されたら成功です。
 
 
-## ボリュームマウントでコンテンツを変更できるようにする
+### ボリュームマウントでコンテンツを変更できるようにする
 
 ポートフォワーディング設定でコンテナにアクセスできるようになりましたが、
 このままではコンテナに手元の資材を持ち込むことができません。
@@ -104,12 +106,12 @@ It's my created file!
 `It's my created file!` と表示されます。
 
 
-## カスタム Docker イメージの作成
+### カスタム Docker イメージの作成
 
 Docker イメージの基本的な使い方は理解できたと思います。
 次に、カスタム Docker イメージを作成してみましょう。
 
-### Dockerfile の作成
+#### Dockerfile の作成
 
 `httpd` イメージと同じように、 Apache HTTP Server を動作させるカスタム Docker イメージを作成します。
 まず、カレントディレクトリに `Dockerfile` という名前のファイルを作成し、以下の内容を記述します。
@@ -136,7 +138,7 @@ CMD ["sh", "-c", ". /etc/apache2/envvars && exec apache2 -DFOREGROUND"]
 ```
 
 
-### Docker イメージのビルド
+#### Docker イメージのビルド
 
 次に、カスタム Docker イメージをビルドします。
 カレントディレクトリで、以下のコマンドを実行します。
@@ -158,7 +160,7 @@ my-httpd:latest                                                                 
 ```
 
 
-### カスタム Docker イメージの起動
+#### カスタム Docker イメージの起動
 
 最後に、ビルドしたカスタム Docker イメージを起動します。
 以下のコマンドを実行します。
@@ -176,7 +178,7 @@ docker run -p 8080:80 -v "$(pwd):/var/www/html" my-httpd:latest
 これで、カスタム Docker イメージの作成と起動ができました。
 
 
-# Docker Compose を使ってみる
+## Docker Compose を使ってみる
 
 Docker Compose は、複数の Docker コンテナをまとめて管理するためのツールです。
 ひとつひとつのコンテナを、「サービス」として定義し、複数のサービスをまとめて「アプリケーション」として定義します。
@@ -184,7 +186,7 @@ Docker Compose は、複数の Docker コンテナをまとめて管理するた
 本ワークショップでは、 Dev container を使った開発環境構築を見越して、「開発環境」と「RDBMS 環境」のふたつのサービスを定義してみましょう。
 
 
-## 複数サービスの定義
+### 複数サービスの定義
 
 前述の通り、「開発環境」と「RDBMS 環境」のふたつのサービスを定義します。
 サービスの内容としては、以下の通りです。
@@ -192,7 +194,7 @@ Docker Compose は、複数の Docker コンテナをまとめて管理するた
 - 開発環境: curl クライアントをインストールしたコンテナ
 - RDBMS 環境: Apache HTTP Server コンテナ
 
-### compose.yaml の作成
+#### compose.yaml の作成
 
 それでは、サービス定義をしていきましょう。
 カレントディレクトリに `compose.yaml` という名前のファイルを作成し、以下の内容を記述します。
@@ -214,7 +216,7 @@ services:
       - ./:/usr/local/apache2/htdocs
 ```
 
-## Docker Compose の起動
+### Docker Compose の起動
 
 次に、 Docker Compose を起動します。
 カレントディレクトリで、以下のコマンドを実行します。
@@ -223,9 +225,9 @@ services:
 docker compose up -d
 ```
 
-## サービスの動作確認
+### サービスの動作確認
 
-### web サービスの動作確認
+#### web サービスの動作確認
 
 web サービスが動いているかを確認します。
 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
@@ -233,7 +235,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 `It's my created file!` と表示されれば成功です。
 
 
-### app サービスの動作確認
+#### app サービスの動作確認
 
 app サービスが動いているかを確認します。
 app サービスに接続し、 curl コマンドで web サービスにアクセスしてみましょう。
@@ -260,7 +262,7 @@ curl http://web:80
 app サービスと web サービスのふたつのサービスを定義し、動作確認まで行いました。
 今回は app サービスに curl コマンドをインストールしましたが、実際の開発環境では Java や Node.js などの開発ツールをインストールします。
 
-### Docker Compose の停止
+#### Docker Compose の停止
 
 サービスの動作確認ができたら、 Docker Compose を停止します。
 カレントディレクトリで、以下のコマンドを実行します。
@@ -269,13 +271,13 @@ app サービスと web サービスのふたつのサービスを定義し、�
 docker compose down
 ```
 
-# まとめ
+## まとめ
 
 今回は、 Docker コンテナの基本的な使い方と Docker Compose の基本的な使い方を学びました。
 次回は、この知識を活かして、 Dev container を使った開発環境構築を学びます。
 
 
-# 参考資料
+## 参考資料
 
 - [httpd - Official Image | Docker Hub](https://hub.docker.com/_/httpd)
 - [ubuntu - Official Image | Docker Hub](https://hub.docker.com/_/ubuntu)

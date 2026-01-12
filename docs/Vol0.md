@@ -4,14 +4,16 @@ author: mikoto2000
 date: 2026/1/8
 ---
 
-# 前提条件
+# シリーズ: コンテナで構築する開発環境 - Vol.0 開発環境構築
+
+## 前提条件
 
 - Windows 11 Pro の PC
 
 
-# WSL のインストール
+## WSL のインストール
 
-## WSL の有効化
+### WSL の有効化
 
 WSL (Windows Subsystem for Linux) をインストールします。
 
@@ -26,7 +28,7 @@ wsl.exe --install
 インストールが完了したら、PC を再起動します。
 
 
-## Linux ディストリビューションのインストール
+### Linux ディストリビューションのインストール
 
 今回は、 Ubuntu 24.04 LTS をインストールします。
 再起動後、再度 Windows Terminal を起動し、以下コマンドを実行します。
@@ -42,13 +44,13 @@ Linux のシェルが起動したら、インストール成功です。
 WARNING: この時点で、 BIOS の仮想化支援機能が無効になっている場合、以下のエラーメッセージが表示されることがあります。その場合には、セクション「BIOS の仮想化支援機能の有効化」を参照して、BIOS の設定を変更し、もう一度 WSL のインストールをやり直してください。
 
 
-# BIOS の仮想化支援機能の有効化
+## BIOS の仮想化支援機能の有効化
 
 WSL 2 を使用するためには、BIOS の仮想化支援機能が有効になっている必要があります。
 この章では、BIOS の仮想化支援機能を有効にする手順を説明します。
 
 
-## BIOS 設定画面へのアクセス
+### BIOS 設定画面へのアクセス
 
 1. Windows メニュー → 設定 → システム → 回復 を選択
 2. 項目 `PC の起動方法をカスタマイズする` の、ボタン `今すぐ再起動` をクリック
@@ -57,18 +59,18 @@ WSL 2 を使用するためには、BIOS の仮想化支援機能が有効にな
 5. `再起動` ボタンをクリックして、BIOS 設定画面に入る
 
 
-## 仮想化支援機能の有効化
+### 仮想化支援機能の有効化
 
 BIOS 設定画面で、仮想化支援機能を有効にします。
 
-### 注意
+#### 注意
 
 BIOS 設定画面の操作方法は PC のメーカーやモデルによって異なります。以下手順で操作できない場合は、運営に問い合わせてください。
 
 また、 BIOS 設定は PC の基本設定に影響します。本資料で指定していない項目は**絶対に**変更しないでください。
 
 
-### 手順
+#### 手順
 
 次のような名前のセクションを探して開いてください:
 
@@ -95,7 +97,7 @@ BIOS のどこかに `Save & Exit` という名前のメニューがあるはず
 再起動が完了したら、再度 WSL のインストールを試みてください。
 
 
-# Ubuntu 24.04 の起動
+## Ubuntu 24.04 の起動
 
 インストールが成功した場合、すでに Ubuntu 24.04 のシェルが起動しているはずです。
 ここでは、改めて Ubuntu 24.04 を起動する手順を説明します。
@@ -103,11 +105,11 @@ BIOS のどこかに `Save & Exit` という名前のメニューがあるはず
 Ubuntu 24.04 を起動するには、スタートメニューから Ubuntu 24.04 を選択して起動します。
 
 
-# Docker のインストール
+## Docker のインストール
 
 Ubuntu 24.04 の起動後、[Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/) の手順に従って、Docker をインストールします。
 
-## apt リポジトリの登録
+### apt リポジトリの登録
 
 Docker インストールに必要な apt リポジトリを Ubuntu に登録します。
 
@@ -131,7 +133,7 @@ EOF
 sudo apt update
 ```
 
-## Docker エンジンのインストール
+### Docker エンジンのインストール
 
 Docker エンジンをインストールします。
 
@@ -150,7 +152,7 @@ sudo gpasswd -a <ユーザー名> docker
 変更を反映するため、Ubuntu を再起動するか、ログアウトして再度ログインしてください。
 
 
-## Docker の動作確認
+### Docker の動作確認
 
 Docker が正しくインストールされたか確認するため、 Hello World コンテナを実行してみます。
 
@@ -186,7 +188,7 @@ For more examples and ideas, visit:
 以上で、Docker のインストールと動作確認は完了です。お疲れさまでした。
 
 
-# 参考資料
+## 参考資料
 
 - [Linux 用 Windows サブシステムに関する FAQ | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows/wsl/faq#can-i-run-wsl-2-in-a-virtual-machine-)
 - [Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/)
