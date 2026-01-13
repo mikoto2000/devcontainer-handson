@@ -68,6 +68,13 @@ services:
     # Microsoft が提供している Dev container 向けの Java イメージ
     image: mcr.microsoft.com/devcontainers/java:21
     init: true
+    # 環境変数定義
+    # 以下では PostgreSQL への接続情報を設定している
+    environment:
+      MAIN_DB_HOSTNAME: db
+      MAIN_DB_NAME: appdb
+      MAIN_DB_USER: admin
+      MAIN_DB_PASSWORD: password
     volumes:
       # プロジェクトルートを /workspace にマウント
       - ..:/workspace
@@ -154,3 +161,31 @@ VS Code のウィンドウがリロードされ、左下に `Dev Container: Java
 これで、 Dev container による開発環境の立ち上げが完了しました。
 
 このように、事前にいろいろと作るものはありますが、誰かがつくったものを使うだけであれば、 VS Code を開いてから数手で環境の立ち上げが完了します。
+
+# Dev container 開発環境の動作確認
+
+ここから Spring Boot プロジェクトを作って DB へ接続するプロジェクトを作るのは時間がかかりすぎるので、
+代わりに app コンテナに PostgreSQL クライアントをインストールし、そこから psql で DB に繋がることを確認します。
+
+## PostgreSQL クライアントのインストール
+
+VS Code でターミナルを開き、以下コマンドを実行してください。
+コンテナ上に `psql` コマンドがインストールされます。
+
+```sh
+sudo apt update
+sudo apt install -y postgresql-client
+```
+
+## PostgreSQL コンテナへの接続
+
+app コンテナには環境変数が設定されていますので、活用しましょう。
+
+```sh
+PGPASSWORD=${MAIN_DB_PASSWORD} psql -U ${MAIN_DB_USER} -h ${MAIN_DB_HOST} -d ${MAIN_DB_NAME}
+```
+
+DB に接続できたら OK です。
+
+後は、 Spring Initializr などで Spring Boot プロジェクトを作成し、 .devcontainer と同じディレクトリに格納すれば、 Spring Boot + PostgreSQL のプロジェクトの開発ができます。
+
