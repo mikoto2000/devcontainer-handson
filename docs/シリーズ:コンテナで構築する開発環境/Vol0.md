@@ -10,6 +10,14 @@ date: 2026/1/8
 
 - Windows 11 Pro の PC
 
+## VS Code のインストール
+
+以下の公式サイトから VS Code をインストールしてください。
+
+https://code.visualstudio.com/
+
+インストール後、VS Code が起動できることを確認してください。
+
 
 ## WSL のインストール
 
