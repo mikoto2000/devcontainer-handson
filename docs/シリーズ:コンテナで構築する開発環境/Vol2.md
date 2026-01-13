@@ -12,7 +12,7 @@ date: 2026/1/13
 - Vol.1 Docker/Docker Compose 入門 相当の知識を有していること
   - (基本的な Docker/Docker Compose の使い方がわかれば OK)
 
-# Dev container 概要
+## Dev container 概要
 
 この章では、 Dev container を使い始める前に概要を説明します。
 
@@ -31,7 +31,7 @@ Dev container では `devcontainer.json` という設定ファイルを使い、
 
 TODO: 図
 
-# 作業用ディレクトリの作成
+## 作業用ディレクトリの作成
 
 これ以降の作業は、 WSL2 のファイルシステム上に、作業用ディレクトリを作成し、そこで作業を行います。
 WSL2 の Ubuntu 24.04 を起動し、以下コマンドで作業用ディレクトリを作成してください。
@@ -43,7 +43,7 @@ mkdir -p ~/tmp/devcontainer-workshop
 ※ Windows のファイルシステム上でも実行は可能だが、パフォーマンスが著しく落ちるため、 WSL2 のファイルシステム上で作業するようにしましょう
 
 
-# Dev container の設定方法
+## Dev container の設定方法
 
 今回は、 Spring Boot + PostgreSQL を使った Web アプリケーションの開発環境を構築していきます。
 
@@ -55,7 +55,7 @@ mkdir -p ~/tmp/devcontainer-workshop
 このように、複数サーバーが必要となるので、 Docker Compose による環境設定を行い、それを基に Dev container 環境設定を行っていきます。
 
 
-## compose.yaml の作成
+### compose.yaml の作成
 
 AP サーバー兼開発サーバーの `dev` と、 DB サーバーの `postgres` をサービスとして定義します。
 
@@ -102,7 +102,7 @@ volumes:
   pgdata:
 ```
 
-## devcontainer.json の作成
+### devcontainer.json の作成
 
 次に、主に「VS Code でどのコンテナに接続し、どんな拡張機能を使うか」を定義していきます。
 
@@ -135,9 +135,9 @@ volumes:
 これで、 Dev container 開発環境を起動する準備ができました。
 
 
-# VS Code の起動と Dev container 拡張機能のインストール
+## VS Code の起動と Dev container 拡張機能のインストール
 
-## VS Code の起動
+### VS Code の起動
 
 `.devcontainer` の格納されているディレクトリに移動し、以下コマンドを実行してください。
 
@@ -150,7 +150,7 @@ code .
 VS Code が表示され、左下に `WSL: Ubuntu-24.04` と表示されます。
 
 
-# Dev container 開発環境の起動
+## Dev container 開発環境の起動
 
 1. Ctrl+Shift+P -> `Open Folder in Container` と入力
 2. 候補に表示される `Dev Containers: Open Folder in Container...` を選択
@@ -162,12 +162,12 @@ VS Code のウィンドウがリロードされ、左下に `Dev Container: Java
 
 このように、事前にいろいろと作るものはありますが、誰かがつくったものを使うだけであれば、 VS Code を開いてから数手で環境の立ち上げが完了します。
 
-# Dev container 開発環境の動作確認
+## Dev container 開発環境の動作確認
 
 ここから Spring Boot プロジェクトを作って DB へ接続するプロジェクトを作るのは時間がかかりすぎるので、
 代わりに app コンテナに PostgreSQL クライアントをインストールし、そこから psql で DB に繋がることを確認します。
 
-## PostgreSQL クライアントのインストール
+### PostgreSQL クライアントのインストール
 
 VS Code でターミナルを開き、以下コマンドを実行してください。
 コンテナ上に `psql` コマンドがインストールされます。
@@ -177,7 +177,7 @@ sudo apt update
 sudo apt install -y postgresql-client
 ```
 
-## PostgreSQL コンテナへの接続
+### PostgreSQL コンテナへの接続
 
 app コンテナには環境変数が設定されていますので、活用しましょう。
 
