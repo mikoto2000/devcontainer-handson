@@ -135,9 +135,7 @@ volumes:
 これで、 Dev container 開発環境を起動する準備ができました。
 
 
-## VS Code の起動と Dev container 拡張機能のインストール
-
-### VS Code の起動
+## VS Code の起動
 
 `.devcontainer` の格納されているディレクトリに移動し、以下コマンドを実行してください。
 
@@ -182,10 +180,17 @@ sudo apt install -y postgresql-client
 app コンテナには環境変数が設定されていますので、活用しましょう。
 
 ```sh
-PGPASSWORD=${MAIN_DB_PASSWORD} psql -U ${MAIN_DB_USER} -h ${MAIN_DB_HOST} -d ${MAIN_DB_NAME}
+PGPASSWORD=${MAIN_DB_PASSWORD} psql -U ${MAIN_DB_USER} -h ${MAIN_DB_HOSTNAME} -d ${MAIN_DB_NAME}
 ```
 
 DB に接続できたら OK です。
 
 後は、 Spring Initializr などで Spring Boot プロジェクトを作成し、 .devcontainer と同じディレクトリに格納すれば、 Spring Boot + PostgreSQL のプロジェクトの開発ができます。
+
+
+## 開発環境の共有方法
+
+開発環境の共有方法は簡単で、プロジェクトのリポジトリ（Git リポジトリなど）に `.devcontainer` を含めるだけです。
+
+こうすることで、 `git clone` をしたのち、プロジェクトディレクトリを VS Code + Dev container 拡張機能を使ってで開くだけで共通の開発環境を使用することができます。
 
