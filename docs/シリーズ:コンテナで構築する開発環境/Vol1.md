@@ -96,7 +96,7 @@ docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 これでカレントディレクトリをコンテナ上の Apache HTTP Server が参照していることが確認できました。
 
 せっかくなのでファイルを作成し、 Apache HTTP Server から参照できることを確認してみましょう。
-カレントディレクトリに `index.html` ファイルを作成し、以下の内容を記述します。
+カレントディレクトリに `index.html` ファイルを作成し、次の内容を記述します。
 
 ```html
 It's my created file!
@@ -114,7 +114,7 @@ Docker イメージの基本的な使い方は理解できたと思います。
 #### Dockerfile の作成
 
 `httpd` イメージと同じように、 Apache HTTP Server を動作させるカスタム Docker イメージを作成します。
-まず、カレントディレクトリに `Dockerfile` という名前のファイルを作成し、以下の内容を記述します。
+まず、カレントディレクトリに `Dockerfile` という名前のファイルを作成し、次の内容を記述します。
 
 ```Dockerfile
 # ベースイメージを指定
@@ -141,7 +141,7 @@ CMD ["sh", "-c", ". /etc/apache2/envvars && exec apache2 -DFOREGROUND"]
 #### Docker イメージのビルド
 
 次に、カスタム Docker イメージをビルドします。
-カレントディレクトリで、以下のコマンドを実行します。
+カレントディレクトリで、次のコマンドを実行します。
 
 ```sh
 docker build -t my-httpd:latest .
@@ -163,7 +163,7 @@ my-httpd:latest                                                                 
 #### カスタム Docker イメージの起動
 
 最後に、ビルドしたカスタム Docker イメージを起動します。
-以下のコマンドを実行します。
+次のコマンドを実行します。
 
 ```sh
 docker run -p 8080:80 -v "$(pwd):/var/www/html" my-httpd:latest
@@ -189,7 +189,7 @@ Docker Compose は、複数の Docker コンテナをまとめて管理するた
 ### 複数サービスの定義
 
 前述の通り、「開発環境」と「RDBMS 環境」のふたつのサービスを定義します。
-サービスの内容としては、以下の通りです。
+サービスの内容としては、次の通りです。
 
 - 開発環境: curl クライアントをインストールしたコンテナ
 - RDBMS 環境: Apache HTTP Server コンテナ
@@ -197,7 +197,7 @@ Docker Compose は、複数の Docker コンテナをまとめて管理するた
 #### compose.yaml の作成
 
 それでは、サービス定義をしていきましょう。
-カレントディレクトリに `compose.yaml` という名前のファイルを作成し、以下の内容を記述します。
+カレントディレクトリに `compose.yaml` という名前のファイルを作成し、次の内容を記述します。
 
 ```yaml
 services:
@@ -219,7 +219,7 @@ services:
 ### Docker Compose の起動
 
 次に、 Docker Compose を起動します。
-カレントディレクトリで、以下のコマンドを実行します。
+カレントディレクトリで、次のコマンドを実行します。
 
 ```sh
 docker compose up -d
@@ -265,7 +265,7 @@ app サービスと web サービスのふたつのサービスを定義し、�
 #### Docker Compose の停止
 
 サービスの動作確認ができたら、 Docker Compose を停止します。
-カレントディレクトリで、以下のコマンドを実行します。
+カレントディレクトリで、次のコマンドを実行します。
 
 ```sh
 docker compose down

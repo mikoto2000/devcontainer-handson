@@ -34,7 +34,7 @@ TODO: 図
 ## 作業用ディレクトリの作成
 
 これ以降の作業は、 WSL2 のファイルシステム上に、作業用ディレクトリを作成し、そこで作業を行います。
-WSL2 の Ubuntu 24.04 を起動し、以下コマンドで作業用ディレクトリを作成してください。
+WSL2 の Ubuntu 24.04 を起動し、次のコマンドで作業用ディレクトリを作成してください。
 
 ```sh
 mkdir -p ~/tmp/devcontainer-workshop
@@ -69,7 +69,7 @@ services:
     image: mcr.microsoft.com/devcontainers/java:21
     init: true
     # 環境変数定義
-    # 以下では PostgreSQL への接続情報を設定している
+    # 次では PostgreSQL への接続情報を設定している
     environment:
       MAIN_DB_HOSTNAME: db
       MAIN_DB_NAME: appdb
@@ -88,7 +88,7 @@ services:
     # 環境変数定義
     # Docker Hub の postgres のページを見るとわかるが、
     # 環境変数によって実行する DB の設定変更が可能。
-    # 以下では DB 名・ユーザー名・パスワードを設定している
+    # 次では DB 名・ユーザー名・パスワードを設定している
     environment:
       POSTGRES_DB: appdb
       POSTGRES_USER: admin
@@ -137,7 +137,7 @@ volumes:
 
 ## VS Code の起動
 
-`.devcontainer` の格納されているディレクトリに移動し、以下コマンドを実行してください。
+`.devcontainer` の格納されているディレクトリに移動し、次のコマンドを実行してください。
 
 ```sh
 code .
@@ -167,7 +167,7 @@ VS Code のウィンドウがリロードされ、左下に `Dev Container: Java
 
 ### PostgreSQL クライアントのインストール
 
-VS Code でターミナルを開き、以下コマンドを実行してください。
+VS Code でターミナルを開き、次のコマンドを実行してください。
 コンテナ上に `psql` コマンドがインストールされます。
 
 ```sh
