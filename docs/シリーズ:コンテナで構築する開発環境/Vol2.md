@@ -1,10 +1,10 @@
 ---
-title: "シリーズ: コンテナで構築する開発環境 - Vol.2 Dev container 入門"
+title: "Dev container 入門"
 author: mikoto2000
 date: 2026/1/13
 ---
 
-# シリーズ: コンテナで構築する開発環境 - Vol.2 Dev container 入門
+# Dev container 入門
 
 ## 前提条件
 

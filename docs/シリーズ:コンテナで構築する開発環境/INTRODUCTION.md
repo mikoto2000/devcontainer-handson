@@ -1,10 +1,10 @@
 ---
-title: "シリーズ: コンテナで構築する開発環境 - INTRODUCTION"
+title: "INTRODUCTION"
 author: mikoto2000
 date: 2026/1/8
 ---
 
-## シリーズ: コンテナで構築する開発環境 - INTRODUCTION
+## INTRODUCTION
 
 ### Description
 

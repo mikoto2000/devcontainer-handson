@@ -1,10 +1,10 @@
 ---
-title: "シリーズ: コンテナで構築する開発環境 - Vol.1 Docker/Docker Compose 入門"
+title: "Docker/Docker Compose 入門"
 author: mikoto2000
 date: 2026/1/9
 ---
 
-# シリーズ: コンテナで構築する開発環境 - Vol.1 Docker/Docker Compose 入門
+# Docker/Docker Compose 入門
 
 ## 前提条件
 
