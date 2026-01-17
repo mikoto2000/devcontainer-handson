@@ -14,4 +14,5 @@ export default defineConfig({
   themeConfig: {
     socialLinks: [],
   },
+  globalStyles: path.join(__dirname, 'styles/global.css'),
 });
