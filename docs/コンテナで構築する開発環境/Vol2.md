@@ -29,7 +29,7 @@ Dev container では `devcontainer.json` という設定ファイルを使い、
 単に Docker コンテナを起動するだけでは、エディタ設定やツール構成までは共有できませんが、
 `devcontainer.json` を定義することで、開発環境そのものをチームで再現可能な形で共有できます。
 
-TODO: 図
+![Dev Container](./images/vol2/dev-container.png)
 
 ## 作業用ディレクトリの作成
 
