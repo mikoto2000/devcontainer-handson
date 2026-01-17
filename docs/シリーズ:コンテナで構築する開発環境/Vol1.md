@@ -89,7 +89,7 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、
 手元の資材をコンテナに持ち込めるようにしましょう。
 
-<!-- TODO: 図 ボリュームマウントイメージ ![](./images/docker-image-and-container.png) -->
+![ボリュームマウント](./images/vol1/volume-mount.png)
 
 ```sh
 docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
