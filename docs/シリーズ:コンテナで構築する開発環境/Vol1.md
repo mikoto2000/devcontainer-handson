@@ -35,7 +35,7 @@ Docker イメージ自体は、 Dockerfile というファイルから生成さ�
 プログラムでいうところのソースコードです。どのようにアプリケーション実行環境を構築するかを記述します。
 
 
-図 ![Dockerfile, Docker イメージ, docker コンテナ](./images/vol1/dockerfile-docker-image-and-container.png)
+![Dockerfile, Docker イメージ, docker コンテナ](./images/vol1/dockerfile-docker-image-and-container.png)
 
 
 ## Docker コンテナを使ってみる
@@ -69,8 +69,6 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 ホスト OS からコンテナにアクセスするために、ポートフォワーディングを設定します。
 ポートフォワーディング設定を行うことで、ホスト OS の特定のポートへのアクセスをコンテナ内の特定のポートに転送できます。
 
-<!-- TODO: 図 ポートフォワーディングイメージ ![](./images/docker-image-and-container.png) -->
-
 ```sh
 docker run -p 8080:80 httpd:latest
 ```
@@ -80,6 +78,8 @@ docker run -p 8080:80 httpd:latest
 このように、ポートフォワーディング設定をすることで、ホストのポート 8080 から コンテナのポート 80(Apache HTTP Server) にアクセスできるようになります。
 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
 `It works!` と表示されたら成功です。
+
+![ポートフォワーディング](./images/vol1/port-forwarding.png)
 
 
 ### ボリュームマウントでコンテンツを変更できるようにする
