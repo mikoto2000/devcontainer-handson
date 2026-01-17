@@ -89,8 +89,6 @@ Web ブラウザで `http://localhost:8080` にアクセスしてみましょう
 それでは開発環境として不便ですので、ボリュームマウントという仕組みを使い、
 手元の資材をコンテナに持ち込めるようにしましょう。
 
-![ボリュームマウント](./images/vol1/volume-mount.png)
-
 ```sh
 docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 ```
@@ -101,6 +99,8 @@ docker run -p 8080:80 -v "$(pwd):/usr/local/apache2/htdocs" httpd:latest
 コンテナを起動したら、再度 Web ブラウザで `http://localhost:8080` にアクセスしてみましょう。
 `It works!` の代わりに、カレントディレクトリのファイル一覧が表示されます。
 これでカレントディレクトリをコンテナ上の Apache HTTP Server が参照していることが確認できました。
+
+![ボリュームマウント](./images/vol1/volume-mount.png)
 
 せっかくなのでファイルを作成し、 Apache HTTP Server から参照できることを確認してみましょう。
 カレントディレクトリに `index.html` ファイルを作成し、次の内容を記述します。
