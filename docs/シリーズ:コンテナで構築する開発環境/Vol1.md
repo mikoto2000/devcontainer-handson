@@ -26,9 +26,16 @@ Docker イメージと言われるテンプレートからコンテナを起動�
 
 「Docker イメージ = コンテナの設計図」と考えてください。
 プログラムでいうところのクラスのようなもので、イメージからコンテナを起動（インスタンス化）します。
+Docker イメージ自体は、 Dockerfile というファイルから生成されます。
 
 
-<!-- TODO: 図 ![](./images/docker-image-and-container.png) -->
+### Dockerfile とは
+
+「Dockerfile = コンテナの構築手順書」と考えてください。
+プログラムでいうところのソースコードです。どのようにアプリケーション実行環境を構築するかを記述します。
+
+
+図 ![Dockerfile, Docker イメージ, docker コンテナ](./images/vol1/dockerfile-docker-image-and-container.png)
 
 
 ## Docker コンテナを使ってみる
