@@ -17,7 +17,7 @@ date: 2026/1/13
 この章では、 Dev container を使い始める前に概要を説明します。
 
 Dev container とは、誤解を恐れず言うと、
-「docker や docker compose コマンドで立ち上げたコンテナに、 VS Code を転送して作業を行う仕組み」
+「docker や docker compose コマンドで立ち上げたコンテナに、 VS Code を転送して作業するための仕組み」
 です。
 
 ファイル編集やコマンド実行はコンテナ上に転送した VS Code で行い、その結果を見る UI だけがホスト OS 上で動きます。
@@ -27,7 +27,7 @@ Dev container では `devcontainer.json` という設定ファイルを使い、
 (VS Code の設定やインストールする拡張機能・拡張機能設定など)
 
 単に Docker コンテナを起動するだけでは、エディタ設定やツール構成までは共有できませんが、
-`devcontainer.json` で定義することで、開発環境そのものをチームで再現可能な形で共有できます。
+`devcontainer.json` を定義することで、開発環境そのものをチームで再現可能な形で共有できます。
 
 TODO: 図
 
@@ -40,7 +40,9 @@ WSL2 の Ubuntu 24.04 を起動し、次のコマンドで作業用ディレク�
 mkdir -p ~/tmp/devcontainer-workshop
 ```
 
-※ Windows のファイルシステム上でも実行は可能だが、パフォーマンスが著しく落ちるため、 WSL2 のファイルシステム上で作業するようにしましょう
+:::note
+Windows のファイルシステム上でも実行は可能だが、パフォーマンスが著しく落ちるため、 WSL2 のファイルシステム上で作業するようにしましょう。
+:::
 
 
 ## Dev container の設定方法
@@ -52,7 +54,7 @@ mkdir -p ~/tmp/devcontainer-workshop
 - AP サーバー: Spring Boot 組み込み Tomcat
 - DB サーバー: PostgreSQL
 
-このように、複数サーバーが必要となるので、 Docker Compose による環境設定を行い、それを基に Dev container 環境設定を行っていきます。
+このように、複数サーバーが必要となるので、 Docker Compose による環境設定を行い、それを基に Dev container の環境設定を行っていきます。
 
 
 ### compose.yaml の作成
@@ -192,5 +194,5 @@ DB に接続できたら OK です。
 
 開発環境の共有方法は簡単で、プロジェクトのリポジトリ（Git リポジトリなど）に `.devcontainer` を含めるだけです。
 
-こうすることで、 `git clone` をしたのち、プロジェクトディレクトリを VS Code + Dev container 拡張機能を使ってで開くだけで共通の開発環境を使用することができます。
+こうすることで、 `git clone` をしたのち、プロジェクトディレクトリを VS Code + Dev container 拡張機能を使ってで開くだけで共通の開発環境を使用できます。
 
