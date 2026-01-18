@@ -10,6 +10,7 @@ export default defineConfig({
     light: '/rspress-light-logo.png',
     dark: '/rspress-dark-logo.png',
   },
+  logo: null,
   logoText: 'コンテナで構築する開発環境',
   themeConfig: {
     socialLinks: [],
