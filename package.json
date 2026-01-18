@@ -21,6 +21,7 @@
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
+    "rsbuild-plugin-google-analytics": "^1.0.5",
     "textlint": "^15.5.0",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "typescript-eslint": "^8.22.0"
