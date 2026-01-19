@@ -5,13 +5,13 @@ import { pluginGoogleAnalytics } from 'rsbuild-plugin-google-analytics';
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   base: '/devcontainer-workshop/',
-  title: 'シリーズ: コンテナで構築する開発環境',
+  title: 'Dev Container で構築する開発環境',
   logo: {
     light: '/rspress-light-logo.png',
     dark: '/rspress-dark-logo.png',
   },
   logo: null,
-  logoText: 'コンテナで構築する開発環境',
+  logoText: 'Dev Container で構築する開発環境',
   themeConfig: {
     socialLinks: [],
   },

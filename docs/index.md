@@ -2,7 +2,7 @@
 pageType: home
 
 hero:
-  name: "シリーズ: コンテナで構築する開発環境"
+  name: "Dev Container で構築する開発環境"
   actions:
     - theme: alt
       text: 資料を読む
