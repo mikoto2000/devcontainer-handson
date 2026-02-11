@@ -37,7 +37,7 @@ Dev container では `devcontainer.json` という設定ファイルを使い、
 WSL2 の Ubuntu 24.04 を起動し、次のコマンドで作業用ディレクトリを作成してください。
 
 ```sh
-mkdir -p ~/tmp/devcontainer-workshop
+mkdir -p ~/tmp/devcontainer-handson
 ```
 
 :::note
