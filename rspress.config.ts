@@ -4,7 +4,7 @@ import { pluginGoogleAnalytics } from 'rsbuild-plugin-google-analytics';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  base: '/devcontainer-workshop/',
+  base: '/devcontainer-handson/',
   title: 'Dev Container で構築する開発環境',
   logo: {
     light: '/rspress-light-logo.png',
